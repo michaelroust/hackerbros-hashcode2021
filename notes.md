@@ -7,3 +7,5 @@ To Setup workspace:
 
 After every time you relaunch the terminal you have to run `source venv/bin/activate`.
 Unless, you use the vscode terminal and vscode to automatically enables it.
+
+- Install vscode live share
