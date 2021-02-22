@@ -1,0 +1,4 @@
+
+To Setup workspace:
+
+- pip install -r requirements.txt
