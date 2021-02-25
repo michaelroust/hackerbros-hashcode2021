@@ -62,7 +62,23 @@ def array_to_file(array, output_file):
 
 
 def algo(array):
-    time = array[0][0]
+    time = int(array[0][0])
+    nb_intersections = int(array[0][1])
+    nb_streets = int(array[0][2])
+    nb_cars = int(array[0][3])
+    nb_score_per_car = int(array[0][4])
+    
+    streets = array[1:1+nb_streets] 
+    
+    for i in range(0, len(streets)):
+        streets[i] = [int(streets[i][0]), int(streets[i][1], streets[i][2], int(streets[i][3]))]
+                      
+    paths = array[1+nb_streets:]
+    
+    for i in range(0, len(paths)):
+        paths[i][0] = int(paths[i][0])
+    
+    
     
     
     
