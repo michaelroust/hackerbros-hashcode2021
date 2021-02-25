@@ -62,6 +62,10 @@ def array_to_file(array, output_file):
 
 
 def algo(array):
+    time = array[0][0]
+    
+    
+    
     return 0
 
 
@@ -70,5 +74,5 @@ def main(input_file, output_file):
 
     result = algo(input_file)
 
-    array_to_file(result, output_file)
+    # array_to_file(result, output_file)
     
