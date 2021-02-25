@@ -83,20 +83,6 @@ def parse(array):
 
     return time, nb_intersections, nb_streets, nb_cars, nb_score_per_car, streets, paths
     
-    
-#streets: id_start id_end name time
-def orderByIntersection(streets,nb_intersections):
-    list_of_streets_per_intersection = []
-    for i in range(nb_intersections):
-        list_of_streets_per_intersection.append([])
-
-    for street in streets :
-        list_of_streets_per_intersection[street[1]].append(street)
-
-    #or i in range(nb_intersections):
-     #   print(list_of_streets_per_intersection[i])
-
-    return list_of_streets_per_intersection
 
 def algo(array):
     
@@ -107,69 +93,12 @@ def algo(array):
     return 0
 
 
-def compute_schedule_trivial():
-    return 1
-
-
-def compute_street_visits(ordered_streets, paths):
-    
-    [   
-        [intesection_id , ["street_name", times_visited], [...],],
-        [intesection_id , ["street_name", times_visited], [...],],
-    ]
-    
-
-
-def compute_schedule_2(nb_intersections, )
-
-
-def create_output(list_of_streets_per_intersection, nb_intersections):
-    output = []
-    output.append([nb_intersections])
-    
-    for i in range(nb_intersections):
-        output.append([i])
-        output.append([len(list_of_streets_per_intersection[i])])
-        for j in range(len(list_of_streets_per_intersection[i])):
-            output.append([list_of_streets_per_intersection[i][j][2], compute_schedule_trivial()])
-
-    return output
-
-
-
 def main(input_file, output_file):
     array = file_to_array(input_file)
 
-    (time, nb_intersections, nb_streets, nb_cars, nb_score_per_car, streets, paths) = parse(array)
+    result = algo(array)
 
-    ordered_streets = orderByIntersection(streets, nb_intersections)
-    output = create_output(ordered_streets, nb_intersections)
-
-    array_to_file(output, output_file)
+    # array_to_file(result, output_file)
 
 
-# main(INPUT_FILES[0], OUTPUT_FILES[0])
-    
-for (input_file, output_file) in zip(INPUT_FILES, OUTPUT_FILES):
-    main(input_file, output_file)
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+main(INPUT_FILES[0], OUTPUT_FILES[0])
