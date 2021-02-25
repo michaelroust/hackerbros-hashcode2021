@@ -159,6 +159,8 @@ def compute_street_visits(streets, paths):
     return nb_visits_per_street
 # (cars_passing_street/sum_cars_passing_streets_in_intersection * cycle)
 
+
+
 def assign_weights(intersection_id, nb_visits_per_street, intersection_visits, street_name, list_of_streets_per_intersection):
     
     tot_cars_in_intersection = 1 if intersection_visits[intersection_id] < 1 else intersection_visits[intersection_id]
