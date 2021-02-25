@@ -5,20 +5,22 @@
 
 
 INPUT_FILES = [
-    "practice/input/a_example",
-    "practice/input/b_little_bit_of_everything.in",
-    "practice/input/c_many_ingredients.in",
-    "practice/input/d_many_pizzas.in",
-    "practice/input/e_many_teams.in"
+    "qualification/input/a.txt",
+    "qualification/input/b.txt",
+    "qualification/input/c.txt",
+    "qualification/input/d.txt",
+    "qualification/input/e.txt",
+    "qualification/input/f.txt"
 ]
 
 
 OUTPUT_FILES = [
-    "practice/output/a_example.out",
-    "practice/output/b_little_bit_of_everything.out",
-    "practice/output/c_many_ingredients.out",
-    "practice/output/d_many_pizzas.out",
-    "practice/output/e_many_teams.out"
+    "qualification/output/a.out",
+    "qualification/output/b.out",
+    "qualification/output/c.out",
+    "qualification/output/d.out",
+    "qualification/output/e.out",
+    "qualification/output/f.out"
 ]
 
 
@@ -61,7 +63,7 @@ def array_to_file(array, output_file):
 #=============================================================================
 
 
-def algo(array):
+def parse(array):
     time = int(array[0][0])
     nb_intersections = int(array[0][1])
     nb_streets = int(array[0][2])
@@ -71,24 +73,56 @@ def algo(array):
     streets = array[1:1+nb_streets] 
     
     for i in range(0, len(streets)):
-        streets[i] = [int(streets[i][0]), int(streets[i][1], streets[i][2], int(streets[i][3]))]
+        streets[i] = [int(streets[i][0]), int(streets[i][1]), streets[i][2], int(streets[i][3])]
                       
     paths = array[1+nb_streets:]
     
     for i in range(0, len(paths)):
         paths[i][0] = int(paths[i][0])
+        
+
+    return time, nb_intersections, nb_streets, nb_cars, nb_score_per_car, streets, paths
     
+#streets id_start id_end name time
+def orderByIntersection(streets,nb_intersections):
+    list_of_streets_per_intersection = []
+    for i in range(nb_intersections):
+        list_of_streets_per_intersection.append([])
+
+    for street in streets :
+        list_of_streets_per_intersection[street[1]].append(street)
+
+    for i in range(nb_intersections):
+        print(list_of_streets_per_intersection[i])
+
+
+
+def algo(array):
     
+    time, nb_intersections, nb_streets, nb_cars, nb_score_per_car, streets, paths = parse(array)
     
-    
+    print(parse(array))
     
     return 0
+
+
 
 
 def main(input_file, output_file):
     array = file_to_array(input_file)
 
-    result = algo(input_file)
+    (time, nb_intersections, nb_streets, nb_cars, nb_score_per_car, streets, paths) = parse(array)
+
+    orderByIntersection(streets, nb_intersections)
 
     # array_to_file(result, output_file)
+
+
+main(INPUT_FILES[0], OUTPUT_FILES[0])
+    
+
+    
+
+    
+
     
