@@ -109,26 +109,6 @@ def calculate_score(result,input,pizza_list):
         ingredients_set = set()
         nb_pizzas = array[i][0]
         tmp_res = array[i][1:]
-    for i in range(len(array)):
-        ingredients_set = set()
-        nb_pizzas = array[i][0]
-        tmp_res = array[i][1:]
-    for i in range(len(array)):
-        ingredients_set = set()
-        nb_pizzas = array[i][0]
-        tmp_res = array[i][1:]
-    for i in range(len(array)):
-        ingredients_set = set()
-        nb_pizzas = array[i][0]
-        tmp_res = array[i][1:]
-    for i in range(len(array)):
-        ingredients_set = set()
-        nb_pizzas = array[i][0]
-        tmp_res = array[i][1:]
-    for i in range(len(array)):
-        ingredients_set = set()
-        nb_pizzas = array[i][0]
-        tmp_res = array[i][1:]
         for pizza_nb in tmp_res:
             pizza = pizza_list[pizza_nb]
             for ingredient in pizza:

@@ -69,21 +69,21 @@ def parse(array):
     nb_streets = int(array[0][2])
     nb_cars = int(array[0][3])
     nb_score_per_car = int(array[0][4])
-    
-    streets = array[1:1+nb_streets] 
-    
+
+    streets = array[1:1+nb_streets]
+
     for i in range(0, len(streets)):
         streets[i] = [int(streets[i][0]), int(streets[i][1]), streets[i][2], int(streets[i][3])]
-                      
+
     paths = array[1+nb_streets:]
-    
+
     for i in range(0, len(paths)):
         paths[i][0] = int(paths[i][0])
-        
+
 
     return time, nb_intersections, nb_streets, nb_cars, nb_score_per_car, streets, paths
-    
-    
+
+
 #streets: id_start id_end name time
 def orderByIntersection(streets,nb_intersections):
     list_of_streets_per_intersection = []
@@ -99,11 +99,11 @@ def orderByIntersection(streets,nb_intersections):
     return list_of_streets_per_intersection
 
 def algo(array):
-    
+
     time, nb_intersections, nb_streets, nb_cars, nb_score_per_car, streets, paths = parse(array)
-    
+
     print(parse(array))
-    
+
     return 0
 
 
@@ -112,21 +112,25 @@ def compute_schedule_trivial():
 
 
 def compute_street_visits(ordered_streets, paths):
-    
-    [   
-        [intesection_id , ["street_name", times_visited], [...],],
-        [intesection_id , ["street_name", times_visited], [...],],
-    ]
-    
+    pass
+
+    # [
+    #     [intesection_id , ["street_name", times_visited], [...],],
+    #     [intesection_id , ["street_name", times_visited], [...],],
+    # ]
 
 
-def compute_schedule_2(nb_intersections, )
+
+
+
+def compute_schedule_2(nb_intersections, paths):
+    
 
 
 def create_output(list_of_streets_per_intersection, nb_intersections):
     output = []
     output.append([nb_intersections])
-    
+
     for i in range(nb_intersections):
         output.append([i])
         output.append([len(list_of_streets_per_intersection[i])])
@@ -149,27 +153,7 @@ def main(input_file, output_file):
 
 
 # main(INPUT_FILES[0], OUTPUT_FILES[0])
-    
+
 for (input_file, output_file) in zip(INPUT_FILES, OUTPUT_FILES):
     main(input_file, output_file)
 
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
