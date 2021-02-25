@@ -107,105 +107,49 @@ def algo(array):
     return 0
 
 
-def compute_schedule_trivial():
-    return 1
+def compute_schedule_table(streets_per_intersection, total_time, nb_cars):
+    table = []
+    for intersection in streets_per_intersection:
+        avg_cars_per_intersection = nb_cars // len(streets_per_intersection) +1
+        seconds = total_time // avg_cars_per_intersection // len(intersection)
+        table.append(seconds)
+
+        # seconds = len(intersection)
+        return table
 
 
-def compute_schedule_better(inter_id, street_name, intersection_visits):
+
+def compute_schedule_better(street_visits):
     pass
 
 
-# [
-#     [intesection_id, total_intersection_visits, ["street_name", times_visited], [...],],
-#     [intesection_id, total_intersection_visits, ["street_name", times_visited], [...],],
-# ]
+def compute_street_visits(ordered_streets, paths):
+    pass
+
+    # [
+    #     [intesection_id , ["street_name", times_visited], [...],],
+    #     [intesection_id , ["street_name", times_visited], [...],],
+    # ]
 
 
-def streets_to_out_intersection_dict(streets):
-    streets_to_inters_dict = {}
-    
-    for street in streets:
-        street_name = street[2]
-        street_out_inter = street[1]
-        
-        streets_to_inters_dict[street_name] = street_out_inter
-        
-    return streets_to_inters_dict
-    
 
-def group_street_visits(nb_intersections, street_visits_dict, streets_to_inters_dict):
-    intersections = [0 for _ in list(range(0, nb_intersections))]
-    
-    for (street_name, street_visits) in street_visits_dict.items():
-        intersection_id = streets_to_inters_dict[street_name]
-        
-        intersections[intersection_id] += street_visits
 
-    return intersections
+
+def compute_schedule_2(nb_intersections, paths):
+    pass
     
 
 
-
-def compute_street_visits(streets, paths):
-    nb_visits_per_street = {}
-    
-    for street in streets:
-        nb_visits_per_street[street[2]] = 0
-    
-    for path in paths: 
-        for i in range(path[0]):
-            nb_visits_per_street[path[i + 1]] += 1
-
-    return nb_visits_per_street
-# (cars_passing_street/sum_cars_passing_streets_in_intersection * cycle)
-
-def assign_weights(intersection_id, nb_visits_per_street, intersection_visits, street_name, list_of_streets_per_intersection):
-    
-    tot_cars_in_intersection = 1 if intersection_visits[intersection_id] < 1 else intersection_visits[intersection_id]
-    
-    nb_visits = nb_visits_per_street[street_name]
-    
-    weight = (nb_visits/tot_cars_in_intersection)*len(list_of_streets_per_intersection[intersection_id])
-    
-    if weight < 1:
-        weight = 1
-    
-    return int(weight)
-
-
-
-def create_output(streets, paths, list_of_streets_per_intersection, nb_intersections):
+def create_output(list_of_streets_per_intersection, nb_intersections, table):
     output = []
     output.append([nb_intersections])
-    
-    nb_visits_per_street = compute_street_visits(streets, paths)
-    intersection_visits = group_street_visits(nb_intersections, nb_visits_per_street, streets_to_out_intersection_dict(streets))
 
     for i in range(nb_intersections):
-        #output.append([i])
-        #output.append([len(list_of_streets_per_intersection[i])])
-        
-        # output.extend()
-        
-        sub_output = [[i]]
-        sub_output.append([0])
-        
-        tmp_array = []
-        
-        counter = 0
+        output.append([i])
+        output.append([len(list_of_streets_per_intersection[i])])
         for j in range(len(list_of_streets_per_intersection[i])):
-            # output.append([list_of_streets_per_intersection[i][j][2], compute_schedule_trivial()])
-            
-            weight = assign_weights(i, nb_visits_per_street, intersection_visits, list_of_streets_per_intersection[i][j][2], list_of_streets_per_intersection)
-            
-            if weight > 0:
-                counter += 1
-                sub_output.append([list_of_streets_per_intersection[i][j][2], weight])
-                
-        sub_output[1] = [counter]
-        
-        output.extend(sub_output)
-        
+            output.append([list_of_streets_per_intersection[i][j][2], table[i]])
+
     return output
 
 
@@ -216,14 +160,10 @@ def main(input_file, output_file):
     (time, nb_intersections, nb_streets, nb_cars, nb_score_per_car, streets, paths) = parse(array)
 
     ordered_streets = orderByIntersection(streets, nb_intersections)
-
-    # nb_visits_per_street = compute_street_visits(streets, paths)
-
-    output = create_output(streets, paths, ordered_streets, nb_intersections)
+    table = compute_schedule_table(ordered_streets, time, nb_cars)
+    output = create_output(ordered_streets, nb_intersections, table)
 
     array_to_file(output, output_file)
-
-
 
 
 # main(INPUT_FILES[0], OUTPUT_FILES[0])
